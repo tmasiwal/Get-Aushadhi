@@ -1,0 +1,24 @@
+{
+  "name": "far-bait-8578-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1" ,
+    "start": "node server.js" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmasiwal/far-bait-8578-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmasiwal/far-bait-8578-/issues"
+  },
+  "homepage": "https://github.com/tmasiwal/far-bait-8578-#readme",
+  "dependencies": {
+    "json-server": "^0.17.3"
+  }
+}
