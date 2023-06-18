@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Flex, Spacer, Box, Avatar, Button, ButtonGroup, WrapItem ,useDisclosure,Input, Center, Heading} from '@chakra-ui/react';
+import { Flex, Spacer, Box, Avatar, Button, ButtonGroup, WrapItem ,useDisclosure,Divider,AbsoluteCenter, Center, Heading} from '@chakra-ui/react';
 import { Link, Navigate } from 'react-router-dom';
 import {
     Drawer,
@@ -11,6 +11,7 @@ import {
     DrawerContent,
     DrawerCloseButton,
   } from '@chakra-ui/react'
+  import {BiCartAdd } from "react-icons/bi";
   import { CiEdit ,CiMedicalCross,CiViewList,CiSun} from "react-icons/ci";
 const Navbar = () => {
 
@@ -19,7 +20,9 @@ const Navbar = () => {
 
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 console.log(user)
-
+const divStyles={
+  boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"
+}
   return (
     <>
     <Flex alignItems='center' gap='2'>
@@ -46,9 +49,7 @@ console.log(user)
           <Link to={"/profile"}><Avatar size='lg' name={user.name} src={user.picture}  onClick={onOpen} /></Link>
         </WrapItem>}
         {isAuthenticated ? (
-          <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-            Log Out
-          </Button>
+        null
         ) : (
           <Button onClick={() => loginWithRedirect()}>Log In</Button>
         )}
@@ -64,7 +65,12 @@ console.log(user)
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Profile</DrawerHeader>
+          <DrawerHeader><Box position='relative' padding='10'>
+  <Divider />
+  <AbsoluteCenter bg='white' px='4'>
+    <Heading color={"teal"}>Profile</Heading>
+  </AbsoluteCenter>
+</Box></DrawerHeader>
 
           <DrawerBody>
             <Center>
@@ -73,14 +79,47 @@ console.log(user)
 
            
             </Center>
-            <Center> <Heading color={'blue'}>{user.name}</Heading></Center>
-
-            <Box>
-<Heading > <CiEdit/> Edit Profile </Heading>
-<Heading > <CiMedicalCross/> My Medicine </Heading>
-<Heading > <CiViewList/>Order History </Heading>
-<Heading > <CiSun/> Setting </Heading>
-<Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+            <Center> <Heading color={'teal'}>{user.name}</Heading></Center>
+        <br/>
+            
+            <Box >
+           <Link to={"/cart"}> <Flex alignContent={"center"}gap={2}>
+                    <Heading><BiCartAdd /></Heading>
+                    <Heading as="h3" size="lg">
+                      My Cart
+                    </Heading>
+                  </Flex></Link>
+                  <br/>
+            <Flex alignContent={"center"}gap={2}>
+                    <Heading><CiEdit /></Heading>
+                    <Heading as="h3" size="lg">
+                      Edit Profile
+                    </Heading>
+                  </Flex>
+                  <br/>
+                  <Flex gap={2}>
+                   <Heading> <CiMedicalCross /></Heading>
+                    <Heading as="h3" size="lg">
+                      My Medicine
+                    </Heading>
+                  </Flex>
+                  <br/>
+                  <Flex gap={2}>
+                   <Heading> <CiViewList /></Heading>
+                    <Heading as="h3" size="lg">
+                      Order History
+                    </Heading>
+                  </Flex>
+                  <br/>
+                  <Flex gap={2}>
+                    <Heading><CiSun /></Heading>
+                    <Heading as="h3" size="lg">
+                      Setting
+                    </Heading>
+                  </Flex>
+                  <br/>
+                  <br/>
+<Button bg={"teal"} color={"white"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
             Log Out
           </Button>
 
